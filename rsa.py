@@ -3,9 +3,6 @@ from Crypto.Cipher import PKCS1_OAEP
 
 def GenerateKeyPair(dir = "", size = 3072):
     keyPair = RSA.generate(size)
-    if dir != "":
-        dir = dir + "\\"
-
     privateKey = keyPair.export_key()
     with open(dir + "private.pem", "wb") as outputFile:
         outputFile.write(privateKey)
@@ -13,6 +10,10 @@ def GenerateKeyPair(dir = "", size = 3072):
     publicKey = keyPair.publickey().export_key()
     with open(dir + "public.pem", "wb") as outputFile:
         outputFile.write(publicKey)
+
+def ImportKey(keyPath):
+    key = RSA.import_key(open(keyPath, "rb").read())
+    return key
 
 def Encrypt(message, publicKey):
     encryptor = PKCS1_OAEP.new(publicKey)
