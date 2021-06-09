@@ -2,6 +2,7 @@ from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 
+
 def GenerateKeyPair(dir = '', size = 3072):
     keyPair = RSA.generate(size)
     privateKey = keyPair.export_key()
@@ -12,9 +13,11 @@ def GenerateKeyPair(dir = '', size = 3072):
     with open(dir + '/' + str(size) + '_public.pem', 'wb') as outputFile:
         outputFile.write(publicKey)
 
+
 def ImportKey(keyPath):
     key = RSA.import_key(open(keyPath, 'rb').read())
     return key
+
 
 def EncryptRSA(data, publicKey):
     encryptor = PKCS1_OAEP.new(publicKey)
@@ -26,10 +29,12 @@ def EncryptRSA(data, publicKey):
 
     return encrypted
 
+
 def DecryptRSA(encrypted, privateKey):
     decryptor = PKCS1_OAEP.new(privateKey)
     decrypted = decryptor.decrypt(encrypted)
     return decrypted
+
 
 def EncryptAES(data, publicKeyPath, outputFilePath = None, header = None, size = 16):
     publicKey = RSA.import_key(open(publicKeyPath).read())
@@ -49,16 +54,17 @@ def EncryptAES(data, publicKeyPath, outputFilePath = None, header = None, size =
     encryptor.update(header)
     if type(data) == str:
         ciphertext, tag = encryptor.encrypt_and_digest(bytes(data, 'utf-8'))
-    
+
     elif type(data) == bytes:
         ciphertext, tag = encryptor.encrypt_and_digest(data)
-        
+
     if outputFilePath is not None:
         outputFile = open(outputFilePath, 'wb')
         [outputFile.write(x) for x in (header, sessionKeyEncrypted, encryptor.nonce, tag, ciphertext)]
         outputFile.close()
 
     return header, sessionKeyEncrypted, encryptor.nonce, tag, ciphertext
+
 
 def DecryptAES(inputFilePath, privateKeyPath, outputFilePath = None):
     privateKey = RSA.import_key(open(privateKeyPath).read())
