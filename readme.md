@@ -6,13 +6,13 @@ A small app that can encrypt and decrypt text and files with AES and RSA encrypt
 ### Python File
 Any operating system with Python.
 - [Python 3.9](https://www.python.org/downloads/) or higher
+- [`PySimpleGUI`](https://pypi.org/project/PySimpleGUI/)
 - [`PyCryptodome`](https://pypi.org/project/pycryptodome/)
 - [`Pillow`](https://pypi.org/project/Pillow/)
-- [`PySimpleGUI`](https://pypi.org/project/PySimpleGUI/)
 ### Windows Systems
 Optional executable file for Windows users. Python and the required packages are included in the executable.
-- 30 MB of free space for the executable
-- 70 MB of free space for temporary files
+- 12 MB of free space for the executable
+- 14 MB of free space for temporary files
 ## Usage
 ### Keys
 You can generate an RSA key pair in the "Keys" tab. These keys are used for both the AES and RSA encryptions, with and without image encryption. The size of the key (in bits) is what determines how much data you are able to encrypt using that key. If you are using AES, the smallest size of 2048 bits is more than enough as the only data encrypted with this RSA key is the AES key itself. However, if you wish to encrypt more than a few bytes of data using purely RSA encryption, you will need to use a larger key, such as 3072 or 4096 bits. An 8192 bit option is included, but it is highly impractical, and it is better to simply use AES encryption instead.

@@ -31,7 +31,6 @@ tab1_layout = [
                 sg.Radio("Text", 'text_file_radios', key='text_radio', default=True, enable_events=True),
                 sg.Radio("File", 'text_file_radios', key='file_radio', default=False, enable_events=True)
             ],
-
             [sg.Text(text="File", key='file_title')],
             [sg.Column([[sg.Input(key='file', disabled_readonly_background_color='black', disabled=True), sg.FileBrowse(key='file_browse', disabled=True)]], key='file_row')],
             [sg.Text(text='', key='encrypt_file_text', size=(40, 2))],
@@ -39,7 +38,6 @@ tab1_layout = [
             [sg.Text(text="Text", key='text_title')],
             [sg.Multiline(default_text='Your message here.', size=(40, 15), key='message')],
             [sg.Text(text='', key='encrypt_message_text', size=(40, 2))],
-
             [sg.Column([[sg.Button(button_text="Encrypt", key='encrypt_button')]])]
         ], vertical_alignment='top')
     ]
