@@ -24,7 +24,7 @@ There are 5 different combinations of encryption algorithms:
 - AES and image encryption
 - RSA and image encryption
 ### AES Encryption
-Can encrypt text and large files. The AES key is encrypted with RSA encryption so data can be securely transmitted using a public key system. This option is recommended over RSA encryption.
+Can encrypt text and large files. An RSA key pair is still required for AES encryption because the AES key is encrypted with RSA encryption so it can be securely transmitted along with the encrypted data. This option is recommended over RSA encryption.
 ### RSA Encryption
 Data is encrypted using only the RSA algorithm. Only useful for encrypting text or very small files (less than 1 KB). Cannot encrypt large files. AES encryption is recommended over this option.
 ### Image Encryption
@@ -40,6 +40,8 @@ Data is first encrypted with AES encryption, then the AES key is encrypted with 
 ### RSA and Image Encryption
 Data is encrypted with RSA encryption, then the encrypted data is encoded into an image. The same limitations outlined under [RSA Encryption](#rsa-encryption) apply here.
 ### Decryption
-Decryption is done automatically, regardless of what encryptions were used and what kind of data was encrypted at the start. Specify the encrypted file or image, your private key (unless the data was encrypted using only image encryption), and an output directory if the data was a file before encryption. An output directory is also required for decrypting data encrypted with AES for temporary files.
+Decryption is done automatically, regardless of what encryptions were used and what kind of data was encrypted at the start. Specify the encrypted file or image, your private key (unless the data was encrypted using only image encryption), and an output directory if the original data was a file.
+## Disclaimer
+This software is not guaranteed to encrypt data safely or securely. Use of this software implies you have read this disclaimer and understand the risks. I am not liable for any data loss, damage, privacy damage, or other consequences resulting from use of this software.
 ## License
 [MIT License](https://choosealicense.com/licenses/mit/)
